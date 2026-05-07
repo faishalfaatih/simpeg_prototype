@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi Kepegawaian</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+    <style>
+      body {
+        background-color: #f4f6f9;
+      }
+
+      .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .sidebar .nav-pills .nav-link.active {
+        background-color: #198754 !important;
+        color: white;
+      }
+
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+      }
+
+      .bottom-nav .nav-link {
+        font-size: 0.75rem;
+        padding: 0.5rem 0;
+        color: #6c757d;
+      }
+      .bottom-nav .nav-link.active {
+        color: #198754;
+        font-weight: bold;
+      }
+      .bottom-nav .bi {
+        font-size: 1.25rem;
+        margin-bottom: 2px;
+      }
+
+      /* Kustomisasi Avatar Profil */
+      .profile-avatar-lg {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border: 4px solid #fff;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      }
+
+      .info-label {
+        font-size: 0.85rem;
+        color: #6c757d;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+
+      .info-value {
+        font-size: 1rem;
+        color: #212529;
+        margin-bottom: 1rem;
+        font-weight: 500;
+      }
+
+      /* Mengubah warna teks tab saat tidak aktif */
+      #profileTabs .nav-link {
+        color: #595c5f;
+      }
+
+      /* Memastikan warna saat aktif atau di-hover tetap konsisten */
+      #profileTabs .nav-link.active {
+        color: #198754 !important;
+        border-bottom: 2px solid #198754; /* Opsional: memberi garis bawah hijau */
+      }
+
+      #profileTabs .nav-link:hover {
+        color: #146c43; /* Warna hijau yang sedikit lebih gelap saat kursor di atasnya */
+      }
+
+      @media (max-width: 767.98px) {
+        .main-content {
+          margin-left: 0;
+          padding-bottom: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar Desktop -->
+    <nav class="sidebar d-none d-md-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm border-end">
+      <a href="#" class="d-flex align-items-center mb-4 me-md-auto link-dark text-decoration-none">
+        <img class="fs-3 me-2" src="logo.png" style="height: 40px; width: 40px" />
+        <span class="fs-4 fw-bold">Ibnu Abbas</span>
+      </a>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item mb-1">
+          <a href="index.html" class="nav-link link-dark"> <i class="bi bi-house-door me-2"></i> Home </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a href="kehadiran.html" class="nav-link link-dark"> <i class="bi bi-calendar-check me-2"></i> Kehadiran </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a href="perizinan.html" class="nav-link link-dark"> <i class="bi bi-envelope-paper me-2"></i> Perizinan </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a href="gaji.html" class="nav-link link-dark"> <i class="bi bi-credit-card me-2"></i> Detail Gaji </a>
+        </li>
+        <li class="nav-item mb-1">
+          <!-- Class active dipindahkan ke Profil Saya -->
+          <a href="#" class="nav-link active" aria-current="page"> <i class="bi bi-person me-2"></i> Profil Saya </a>
+        </li>
+      </ul>
+      <hr />
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://ui-avatars.com/api/?name=User&background=b3f9b8" alt="" width="32" height="32" class="rounded-circle me-2" />
+          <strong>Pengguna</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Bottom Nav Mobile -->
+    <nav class="bottom-nav d-md-none fixed-bottom bg-white border-top shadow-lg">
+      <div class="container-fluid px-0">
+        <ul class="nav justify-content-around text-center m-0 p-1">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-house-door"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="kehadiran.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-calendar-check"></i>
+              <span>Hadir</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="perizinan.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-envelope-paper"></i>
+              <span>Izin</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="gaji.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-credit-card"></i>
+              <span>Gaji</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <!-- Class active dipindahkan ke Profil -->
+            <a href="#" class="nav-link active d-flex flex-column align-items-center">
+              <i class="bi bi-person-fill"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <main class="main-content">
+      <div class="container-fluid pt-3">
+        <!-- Header -->
+        <div class="mb-4">
+          <h2 class="fw-bold">Profil Karyawan</h2>
+        </div>
+
+        <div class="row g-4">
+          <!-- Kolom Kiri: Ringkasan Identitas -->
+          <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 text-center h-100">
+              <div class="card-body p-4 p-md-5">
+                <img src="https://ui-avatars.com/api/?name=Faishal+Muhammad+Faatih&background=198754&color=fff&size=256" alt="Foto Profil" class="rounded-circle profile-avatar-lg mb-3" />
+                <h5 class="fw-bold mb-1">Faishal Muhammad Faatih</h5>
+                <p class="text-muted mb-3">PUSAT DATA DAN SI</p>
+
+                <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2 mb-4">Pegawai Aktif</span>
+
+                <div class="d-grid gap-2">
+                  <a href="edit_profil.html" class="btn btn-outline-success rounded-pill fw-bold"><i class="bi bi-pencil-square me-2"></i> Edit Profil</a>
+                  <a href="ubah_password.html" class="btn btn-outline-secondary rounded-pill fw-bold"><i class="bi bi-shield-lock me-2"></i> Ubah Password</a>
+                  <hr class="my-1 text-muted" />
+                  <button class="btn btn-danger rounded-pill fw-bold"><i class="bi bi-box-arrow-right me-2"></i> Sign Out</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kolom Kanan: Detail Informasi -->
+          <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-4 p-md-5">
+                <!-- Tab Navigasi Internal Profil -->
+                <ul class="nav nav-tabs mb-4" id="profileTabs" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active fw-bold" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">Data Pribadi</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="pekerjaan-tab" data-bs-toggle="tab" data-bs-target="#pekerjaan" type="button" role="tab">Kepegawaian</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="pendidikan-tab" data-bs-toggle="tab" data-bs-target="#pendidikan" type="button" role="tab">Pendidikan</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="bpjs-tab" data-bs-toggle="tab" data-bs-target="#bpjs" type="button" role="tab">BPJS</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="alamat-tab" data-bs-toggle="tab" data-bs-target="#alamat" type="button" role="tab">Alamat</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold" id="keluarga-tab" data-bs-toggle="tab" data-bs-target="#keluarga" type="button" role="tab">Keluarga</button>
+                  </li>
+                </ul>
+
+                <!-- Konten Tab -->
+                <div class="tab-content" id="profileTabsContent">
+                  <!-- Tab Informasi Pribadi -->
+                  <div class="tab-pane fade show active" id="info" role="tabpanel">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="info-label">Nama Lengkap</div>
+                        <div class="info-value">Faishal Muhammad Faatih</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Jenis Kelamin</div>
+                        <div class="info-value">Laki-laki</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Golongan Darah</div>
+                        <div class="info-value">B+</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Tempat, Tgl Lahir</div>
+                        <div class="info-value">17 Maret 2002</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Nomor Telepon</div>
+                        <div class="info-value">+62 812-3456-7890</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tab Data Kepegawaian -->
+                  <div class="tab-pane fade" id="pekerjaan" role="tabpanel">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="info-label">NIPY</div>
+                        <div class="info-value">5200411148</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Bidang / Unit</div>
+                        <div class="info-value">PUSAT DATA DAN SI</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Jabatan</div>
+                        <div class="info-value">-</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Mulai Tugas</div>
+                        <div class="info-value">01 April 2026</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Status Kepegawaian</div>
+                        <div class="info-value">Kontrak</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Masa Bakti</div>
+                        <div class="info-value">0 Tahun 7 Bulan 27 Hari</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Awal Kontrak</div>
+                        <div class="info-value">01-07-2025</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Akhir Kontrak</div>
+                        <div class="info-value">01-07-2027</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">SK Kontrak</div>
+                        <div class="info-value text-muted">Tidak ada berkas</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tab Data Pendidikan -->
+                  <div class="tab-pane fade" id="pendidikan" role="tabpanel">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="info-label">Pendidikan Terakhir</div>
+                        <div class="info-value">S1</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Lembaga Pendidikan</div>
+                        <div class="info-value">Universitas Teknologi Yogyakarta</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">Program Studi</div>
+                        <div class="info-value">Informatika</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">File Ijazah</div>
+                        <div class="info-value text-muted">Tidak ada berkas</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tab Data BPJS -->
+                  <div class="tab-pane fade" id="bpjs" role="tabpanel">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="info-label">BPJS Ketenagakerjaan</div>
+                        <div class="info-value">-</div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="info-label">BPJS Kesehatan</div>
+                        <div class="info-value">-</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tab Data Alamat -->
+                  <div class="tab-pane fade" id="alamat" role="tabpanel">
+                    <div class="row g-4">
+                      <div class="col-md-6 position-relative">
+                        <h6 class="fw-bold mb-3 text-success border-bottom pb-2">Alamat KTP</h6>
+
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="info-label">Provinsi</div>
+                            <div class="info-value">JAWA TENGAH</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kabupaten/Kota</div>
+                            <div class="info-value">KLATEN</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kecamatan</div>
+                            <div class="info-value">TRUCUK</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kelurahan/Desa</div>
+                            <div class="info-value">JATIPURO</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Alamat Jalan</div>
+                            <div class="info-value">Rt.02/Rw.08, Dk.Jatirejo</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kode Pos</div>
+                            <div class="info-value">-</div>
+                          </div>
+                        </div>
+
+                        <div class="d-none d-md-block position-absolute top-0 end-0 h-100 border-end" style="width: 1px"></div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <h6 class="fw-bold mb-3 text-success border-bottom pb-2">Alamat Domisili</h6>
+
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="info-label">Provinsi</div>
+                            <div class="info-value">DAERAH ISTIMEWA YOGYAKARTA</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kabupaten/Kota</div>
+                            <div class="info-value">SLEMAN</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kecamatan</div>
+                            <div class="info-value">DEPOK</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kelurahan/Desa</div>
+                            <div class="info-value">CATURTUNGGAL</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Alamat Jalan</div>
+                            <div class="info-value">Jl. Seturan Raya No. 123</div>
+                          </div>
+                          <div class="col-12">
+                            <div class="info-label">Kode Pos</div>
+                            <div class="info-value">55281</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Tab Data Keluarga -->
+                  <div class="tab-pane fade" id="keluarga" role="tabpanel">
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="card border border-light-subtle shadow-sm h-100 rounded-4">
+                          <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                              <h6 class="fw-bold mb-0 text-dark">Siti Fatimah</h6>
+                              <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1">Hidup</span>
+                            </div>
+                            <div class="text-muted small mb-3"><i class="bi bi-person-heart me-1"></i> Ibu</div>
+
+                            <div class="info-label" style="font-size: 0.75rem">Tanggal Lahir</div>
+                            <div class="info-value mb-0" style="font-size: 0.9rem">12 Mei 1975</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="card border border-light-subtle shadow-sm h-100 rounded-4">
+                          <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                              <h6 class="fw-bold mb-0 text-dark">Ahmad Dahlan</h6>
+                              <span class="badge bg-secondary-subtle text-secondary rounded-pill px-2 py-1">Meninggal</span>
+                            </div>
+                            <div class="text-muted small mb-3"><i class="bi bi-person-heart me-1"></i> Ayah</div>
+
+                            <div class="info-label" style="font-size: 0.75rem">Tanggal Lahir</div>
+                            <div class="info-value mb-0" style="font-size: 0.9rem">08 Agustus 1970</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

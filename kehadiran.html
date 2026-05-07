@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi Kepegawaian</title>
+
+    <!-- Mempertahankan library yang sama dari halaman utama -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+    <style>
+      body {
+        background-color: #f4f6f9;
+      }
+
+      /* Pengaturan Sidebar untuk Desktop */
+      .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .sidebar .nav-pills .nav-link.active {
+        background-color: #198754 !important;
+        color: white;
+      }
+
+      /* Penyesuaian margin konten utama */
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+      }
+
+      /* Styling spesifik Bottom Nav */
+      .bottom-nav .nav-link {
+        font-size: 0.75rem;
+        padding: 0.5rem 0;
+        color: #6c757d;
+      }
+      .bottom-nav .nav-link.active {
+        color: #198754;
+        font-weight: bold;
+      }
+      .bottom-nav .bi {
+        font-size: 1.25rem;
+        margin-bottom: 2px;
+      }
+
+      /* Card interaktif untuk presensi */
+      /* .clock-card {
+        background: linear-gradient(135deg, #fd0d0d 0%, #0a58ca 100%);
+        color: white;
+      } */
+      .clock-card {
+        background: linear-gradient(135deg, #198754 0%, #146c43 100%);
+        color: white;
+      }
+
+      /* Media Query untuk perangkat Mobile */
+      @media (max-width: 767.98px) {
+        .main-content {
+          margin-left: 0;
+          padding-bottom: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar Desktop -->
+    <nav class="sidebar d-none d-md-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm border-end">
+      <a href="#" class="d-flex align-items-center mb-4 me-md-auto link-dark text-decoration-none">
+        <img class="fs-3 me-2" src="logo.png" style="height: 40px; width: 40px" />
+        <span class="fs-4 fw-bold">Ibnu Abbas</span>
+      </a>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item mb-1">
+          <a href="index.html" class="nav-link link-dark"> <i class="bi bi-house-door me-2"></i> Home </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a href="#" class="nav-link active" aria-current="page"> <i class="bi bi-calendar-check me-2"></i> Kehadiran </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a href="perizinan.html" class="nav-link link-dark"> <i class="bi bi-envelope-paper me-2"></i> Perizinan </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a href="gaji.html" class="nav-link link-dark"> <i class="bi bi-credit-card me-2"></i> Detail Gaji </a>
+        </li>
+        <li class="nav-item mb-1">
+          <a href="profil.html" class="nav-link link-dark"> <i class="bi bi-person me-2"></i> Profil Saya </a>
+        </li>
+      </ul>
+      <hr />
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://ui-avatars.com/api/?name=User&background=b3f9b8" alt="" width="32" height="32" class="rounded-circle me-2" />
+          <strong>Pengguna</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Bottom Nav Mobile -->
+    <nav class="bottom-nav d-md-none fixed-bottom bg-white border-top shadow-lg">
+      <div class="container-fluid px-0">
+        <ul class="nav justify-content-around text-center m-0 p-1">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-house-door"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <!-- Class active dipindahkan ke Hadir -->
+            <a href="#" class="nav-link active d-flex flex-column align-items-center">
+              <i class="bi bi-calendar-check-fill"></i>
+              <span>Hadir</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="perizinan.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-envelope-paper"></i>
+              <span>Izin</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="gaji.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-credit-card"></i>
+              <span>Gaji</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="profil.html" class="nav-link d-flex flex-column align-items-center">
+              <i class="bi bi-person"></i>
+              <span>Profil</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <main class="main-content">
+      <div class="container-fluid pt-3">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="fw-bold">Presensi Kehadiran</h2>
+          <div class="d-md-none dropdown">
+            <a href="#" class="d-block link-dark text-decoration-none" id="dropdownMobileUser" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://ui-avatars.com/api/?name=User&background=b3f9b8" alt="Profil" width="40" height="40" class="rounded-circle shadow-sm" />
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownMobileUser">
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Panel Presensi Harian -->
+          <div class="col-lg-5">
+            <div class="card clock-card border-0 shadow-sm rounded-4 h-100 text-center">
+              <div class="card-body p-4 d-flex flex-column justify-content-center">
+                <h5 class="opacity-75 mb-1" id="currentDate">Senin, 01 Januari 2026</h5>
+                <h1 class="display-3 fw-bold mb-4" id="currentTime">07:30</h1>
+
+                <div class="d-grid gap-2 mb-4">
+                  <button class="btn btn-light btn-lg fw-bold text-success rounded-pill shadow-sm"><i class="bi bi-box-arrow-in-right me-2"></i> Rekam Masuk</button>
+                  <button class="btn btn-outline-light btn-lg fw-bold rounded-pill mt-2"><i class="bi bi-box-arrow-left me-2"></i> Rekam Pulang</button>
+                </div>
+
+                <!-- Indikator Multi-Metode -->
+                <div class="bg-white bg-opacity-10 rounded-3 p-3 text-start mt-auto">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
+                    <span class="small"><i class="bi bi-geo-alt me-1"></i> GPS Lokasi</span>
+                    <span class="badge bg-success rounded-pill">Akurat (5m)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Riwayat Kehadiran -->
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="text-muted fw-bold mb-0">Riwayat 5 Hari Terakhir</h6>
+                  <a href="riwayat_kehadiran.html" class="btn btn-sm btn-outline-secondary rounded-pill">Lihat Semua</a>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-borderless align-middle">
+                    <thead class="text-muted small border-bottom">
+                      <tr>
+                        <th>Tanggal</th>
+                        <th>Masuk</th>
+                        <th>Pulang</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Hari ini</strong></td>
+                        <td>07:45</td>
+                        <td>-</td>
+                        <td><span class="badge bg-success-subtle text-success rounded-pill">Tepat Waktu</span></td>
+                      </tr>
+                      <tr>
+                        <td>Kemarin</td>
+                        <td>07:50</td>
+                        <td>16:05</td>
+                        <td><span class="badge bg-success-subtle text-success rounded-pill">Tepat Waktu</span></td>
+                      </tr>
+                      <tr>
+                        <td>2 Hari Lalu</td>
+                        <td>08:15</td>
+                        <td>16:00</td>
+                        <td><span class="badge bg-warning-subtle text-warning rounded-pill">Terlambat</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Script sederhana untuk menjalankan jam real-time
+      function updateTime() {
+        const now = new Date();
+        const timeElement = document.getElementById("currentTime");
+        if (timeElement) {
+          timeElement.textContent = now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" });
+        }
+      }
+      setInterval(updateTime, 1000);
+      updateTime();
+    </script>
+  </body>
+</html>
