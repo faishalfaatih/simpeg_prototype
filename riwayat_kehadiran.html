@@ -8,6 +8,7 @@
     <!-- Library Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet" />
 
     <style>
       body {
@@ -160,10 +161,7 @@
               </div>
               <div class="col-md-6 col-6">
                 <label class="form-label small text-muted fw-bold">Tahun</label>
-                <select class="form-select border-light-subtle bg-light">
-                  <option selected>2026</option>
-                  <option>2025</option>
-                </select>
+                <select class="form-select border-light-subtle bg-light" id="tahunSelect"></select>
               </div>
             </form>
           </div>
@@ -258,5 +256,33 @@
 
     <!-- Script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const selectTahun = document.getElementById("tahunSelect");
+        const tahunSekarang = new Date().getFullYear(); // Mengambil tahun aktif saat ini
+        const tahunMulai = 2010; // Batas tahun paling tua yang ingin ditampilkan
+
+        // Looping mundur dari tahun sekarang ke tahun mulai
+        for (let tahun = tahunSekarang; tahun >= tahunMulai; tahun--) {
+          const option = document.createElement("option");
+          option.value = tahun;
+          option.textContent = tahun;
+
+          // Menjadikan tahun sekarang sebagai pilihan default (selected)
+          if (tahun === tahunSekarang) {
+            option.selected = true;
+          }
+
+          selectTahun.appendChild(option);
+        }
+
+        new TomSelect("#tahunSelect", {
+          create: false,
+          sortField: { field: "text", direction: "desc" },
+        });
+      });
+    </script>
   </body>
 </html>
