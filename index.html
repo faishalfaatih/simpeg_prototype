@@ -46,6 +46,20 @@
         margin-bottom: 2px;
       }
 
+      /* Menimpa warna biru bawaan Bootstrap pada item notifikasi saat diklik/fokus */
+      .dropdown-item:active,
+      .dropdown-item:focus {
+        background-color: #eaf5eb !important; /* Hijau sangat terang agar senada dengan tema */
+        color: inherit !important;
+      }
+
+      /* Menghilangkan outline dan shadow saat elemen difokuskan dengan keyboard */
+      .dropdown-item:focus,
+      .dropdown-item:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
       /* Media Query untuk perangkat Mobile (di bawah 768px) */
       @media (max-width: 767.98px) {
         .main-content {
@@ -131,14 +145,145 @@
       <div class="container-fluid pt-3">
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h2 class="fw-bold">Dashboard</h2>
-          <div class="d-md-none dropdown">
+          <div class="d-flex align-items-center gap-2 gap-md-3">
+            <div class="dropdown">
+              <a
+                href="#"
+                class="btn btn-white bg-white border rounded-circle position-relative p-2 shadow-sm d-flex align-items-center justify-content-center"
+                id="dropdownNotification"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="width: 40px; height: 40px"
+              >
+                <i class="bi bi-bell fs-5 text-dark"></i>
+                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle mt-1 ms-n1">
+                  <span class="visually-hidden">Notifikasi Baru</span>
+                </span>
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 py-0 overflow-hidden mt-2" aria-labelledby="dropdownNotification" style="width: 320px; font-size: 0.9rem">
+                <li class="bg-success text-white p-3 d-flex justify-content-between align-items-center">
+                  <h6 class="mb-0 fw-bold">Notifikasi Terbaru</h6>
+                  <span class="badge bg-white text-success rounded-pill small">2 Baru</span>
+                </li>
+
+                <div style="max-height: 280px; overflow-y: auto">
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="#">
+                      <div class="bg-success-subtle text-success p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-credit-card-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark fw-semibold">Slip Gaji Bulan April 2026 telah diterbitkan.</p>
+                        <small class="text-muted d-block">Baru saja</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="perizinan.html">
+                      <div class="bg-warning-subtle text-warning p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-envelope-paper-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark">Pengajuan cuti tahunan Anda telah disetujui oleh HRD.</p>
+                        <small class="text-muted d-block">2 jam yang lalu</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="perizinan.html">
+                      <div class="bg-warning-subtle text-warning p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-envelope-paper-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark">Pengajuan cuti tahunan Anda telah disetujui oleh HRD.</p>
+                        <small class="text-muted d-block">2 jam yang lalu</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="perizinan.html">
+                      <div class="bg-warning-subtle text-warning p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-envelope-paper-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark">Pengajuan cuti tahunan Anda telah disetujui oleh HRD.</p>
+                        <small class="text-muted d-block">2 jam yang lalu</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="perizinan.html">
+                      <div class="bg-warning-subtle text-warning p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-envelope-paper-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark">Pengajuan cuti tahunan Anda telah disetujui oleh HRD.</p>
+                        <small class="text-muted d-block">2 jam yang lalu</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="perizinan.html">
+                      <div class="bg-warning-subtle text-warning p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-envelope-paper-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark">Pengajuan cuti tahunan Anda telah disetujui oleh HRD.</p>
+                        <small class="text-muted d-block">2 jam yang lalu</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="perizinan.html">
+                      <div class="bg-warning-subtle text-warning p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-envelope-paper-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark">Pengajuan cuti tahunan Anda telah disetujui oleh HRD.</p>
+                        <small class="text-muted d-block">2 jam yang lalu</small>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item p-3 border-bottom d-flex align-items-start gap-3 text-wrap" href="perizinan.html">
+                      <div class="bg-warning-subtle text-warning p-2 rounded-3 d-flex align-items-center">
+                        <i class="bi bi-envelope-paper-fill fs-5"></i>
+                      </div>
+                      <div>
+                        <p class="mb-1 text-dark">Pengajuan cuti tahunan Anda telah disetujui oleh HRD.</p>
+                        <small class="text-muted d-block">2 jam yang lalu</small>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+
+                <li class="text-center p-2 bg-light border-top">
+                  <a href="#" class="text-success fw-bold text-decoration-none small d-block py-1">Tandai semua telah dibaca</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="d-md-none dropdown">
+              <a href="#" class="d-block link-dark text-decoration-none" id="dropdownMobileUser" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://ui-avatars.com/api/?name=User&background=b3f9b8" alt="Profil" width="40" height="40" class="rounded-circle shadow-sm" />
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end text-small shadow border-0 rounded-3 mt-2" aria-labelledby="dropdownMobileUser">
+                <li><a class="dropdown-item" href="profil.html">Profil Saya</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item text-danger" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- <div class="d-md-none dropdown">
             <a href="#" class="d-block link-dark text-decoration-none" id="dropdownMobileUser" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="https://ui-avatars.com/api/?name=User&background=b3f9b8" alt="Profil" width="40" height="40" class="rounded-circle shadow-sm" />
             </a>
             <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownMobileUser">
               <li><a class="dropdown-item" href="#">Sign out</a></li>
             </ul>
-          </div>
+          </div> -->
         </div>
 
         <div class="row g-4">
